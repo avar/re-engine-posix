@@ -3,6 +3,8 @@
 	* POSIX.xs: Make split // use RXf_NULL
 	* t/split-null.t: This test now works since it uses pp_split
 	* TODO: Removed
+	* Makefile.PL: Using ExtUtils::MakeMaker instead of Module::Install
+	* inc/: Removed
 
 2007-07-12  Ævar Arnfjörð Bjarmason  <avar@cpan.org> (0.03)
 
