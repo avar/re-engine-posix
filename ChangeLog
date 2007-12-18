@@ -1,0 +1,18 @@
+2007-07-12  Ævar Arnfjörð Bjarmason  <avar@cpan.org> (0.03)
+
+	* POSIX.pm: Updated various stuff in the docs
+	* POSIX.xs: Now supports split // and m//g (always sets rx->offs correctly)
+	* t/s.t, t/split.t, t/subexp.t: Modified test from ::PCRE
+	* t/split-null.t: Failing test for split //
+	* META.yml: Literal encoding for author name
+
+2007-07-11  Ævar Arnfjörð Bjarmason  <avar@cpan.org> (0.02)
+
+	* Makefile.PL: Minor cleanup
+	* POSIX.(pm|xs): Updated to pass the tests on current blead, still not
+	                 complete wrt s/// and split //
+	* POSIX.h: New header file for POSIX.xs
+
+2007-02-21  Ævar Arnfjörð Bjarmason  <avar@cpan.org> (0.01)
+
+	* Initial release

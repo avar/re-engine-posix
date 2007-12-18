@@ -1,0 +1,15 @@
+abstract: POSIX (IEEE Std 1003.1-2001) regular expressions
+author: Ævar Arnfjörð Bjarmason <avar@cpan.org>
+build_requires: 
+  Test::More: 0
+distribution_type: module
+generated_by: Module::Install version 0.64
+license: perl
+name: re-engine-POSIX
+no_index: 
+  directory: 
+    - inc
+    - t
+requires: 
+  perl: 5.9.5
+tests: t/*.t
