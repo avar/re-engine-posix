@@ -21,7 +21,9 @@ POSIX_comp(pTHX_ const SV * const pattern, const U32 flags)
     /* pregcomp vars */
     int cflags = 0;
     int err;
-    char *err_str;
+#define ERR_STR_LENGTH 512
+    char err_str[ERR_STR_LENGTH];
+    size_t err_str_length;
 
     /* C<split " ">, bypass the engine alltogether and act as perl does */
     if (flags & RXf_SPLIT && plen == 1 && exp[0] == ' ')
@@ -74,10 +76,13 @@ POSIX_comp(pTHX_ const SV * const pattern, const U32 flags)
     err = regcomp(re, exp, cflags);
 
     if (err != 0) {
-        err_str = get_regerror(err, re);
-        free(err_str);
-        regfree(re);
-        croak("error compiling %s: %s", exp, err_str);
+        /* note: we do not call regfree() when regncomp returns an error */
+        err_str_length = regerror(err, re, err_str, ERR_STR_LENGTH);
+        if (err_str_length > ERR_STR_LENGTH) {
+            croak("error compiling `%s': %s (error message truncated)", exp, err_str);
+        } else {
+            croak("error compiling `%s': %s", exp, err_str);
+        }
     }
 
     /* Save for later */
@@ -180,15 +185,6 @@ POSIX_package(pTHX_ REGEXP * const rx)
 {
     PERL_UNUSED_ARG(rx);
     return newSVpvs("re::engine::POSIX");
-}
-
-/* From *info* (libc) 10.3.6 POSIX Regexp Matching Cleanup */
-char *get_regerror (int errcode, regex_t *compiled)
-{
-    size_t length = regerror (errcode, compiled, NULL, 0);
-    char *buffer = malloc (length);
-    (void) regerror (errcode, compiled, buffer, length);
-    return buffer;
 }
 
 MODULE = re::engine::POSIX PACKAGE = re::engine::POSIX

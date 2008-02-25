@@ -1,3 +1,9 @@
+2008-02-25  Ævar Arnfjörð Bjarmason  <avar@cpan.org> (0.05)
+
+	* TRE.xs: Always display an error message even if it's longer than
+	ERR_STR_LENGTH, patch from b_jonas to re::engine::TRE
+	* t/pragma.t: Pragma tests, patch from b_jonas to re::engine::TRE
+
 2007-12-18  Ævar Arnfjörð Bjarmason  <avar@cpan.org> (0.04)
 
 	* POSIX.xs: Make split // use RXf_NULL
