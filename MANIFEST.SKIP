@@ -3,3 +3,5 @@
 ^blib/
 ^Makefile(?:\.old)?$
 \.bak$
+^\.git
+re-.*\.tar.gz$

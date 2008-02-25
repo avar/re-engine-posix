@@ -5,6 +5,7 @@ MANIFEST.SKIP
 POSIX.h
 POSIX.pm
 POSIX.xs
+re-engine-POSIX-0.05.tar.gz
 t/00-compile.t
 t/captures.t
 t/flags.t
